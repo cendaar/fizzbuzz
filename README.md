@@ -62,9 +62,10 @@ $ curl -X GET "http://localhost:8080/stats" | jq
 
 It took me 6 hours to develop this project I don't consider it finished. Here is a list of things I would have enhanced/added:
 
+- Implement persitent statistics data (Redis or PostgreSQL)
 -	Security: Implement HTTPS, CORS config, input validation, and rate limiting.
 -	Performance and Scalability: Add caching, enable concurrency, and ensure scalability in a containerized environment.
-- Dockerization: Ensure the app is containerized for easy deployment, scaling, and testing. You already have a Dockerfile, but validate it for production environments.
+- Dockerization: Ensure the app is containerized for easy deployment, scaling, and testing.
 -	Monitoring and Alerting: Set up Prometheus for metrics, add alerting, and implement distributed tracing.
 -	Error Handling and Logging: Use structured logging and centralized error handling.
 -	Documentation and Testing: Use Swagger, improve tests, and document API usage.
