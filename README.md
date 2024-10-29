@@ -12,14 +12,14 @@ It provides an API endpoint for generating Fizzbuzz sequences and retrieving sta
 
 ## Getting Started
 
-1. Clone this repository:
+### 1. Clone this repository:
 
 ```bash
 git clone https://github.com/cendaar/fizzbuzz.git
 cd fizzbuzz
 ```
 
-### 2. Build the fizzbuzz server:
+### 2. Build & run the fizzbuzz server:
 
 ```bash
 make run
