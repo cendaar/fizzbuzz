@@ -15,51 +15,59 @@ It provides an API endpoint for generating Fizzbuzz sequences and retrieving sta
 1. Clone this repository:
 
 ```bash
-git clone https://github.com/yourusername/fizzbuzz.git
+git clone https://github.com/cendaar/fizzbuzz.git
 cd fizzbuzz
 ```
 
-2. Build the Fizz-Buzz server:
+2. Build the fizzbuzz server:
 
 ```bash
 make run
 ```
 
+2. Run unit tests:
+
+```bash
+make test
+```
+
 3. Test endpoint fizzbuzz:
 
 ```bash
-$ curl -s -d '{"int1":3, "int2":5, "limit":15, "str1":"fizz", "str2":"buzz"}' -H "Content-Type: application/json" -X POST http://localhost:8000/fizzbuzz | jq
-[
-  "1",
-  "2",
-  "fizz",
-  "4",
-  "buzz",
-  "fizz",
-  "7",
-  "8",
-  "fizz",
-  "buzz",
-  "11",
-  "fizz",
-  "13",
-  "14",
-  "fizzbuzz"
-]
+$ curl -X GET "http://localhost:8080/fizzbuzz" -d '{"int1": 2, "int2": 3, "limit": 10, "str1": "Hello", "str2": "World"}' | jq
+{
+  "result": "1,Hello,World,Hello,5,HelloWorld,7,Hello,World,Hello"
+}
 ```
 
 4. Test stats endpoint
 
 ```bash
-$ curl -s  http://localhost:8000/stats | jq
+$ curl -X GET "http://localhost:8080/stats" | jq
 {
-  "hits": 1,
-  "most_common_request": {
-    "int1": 3,
-    "int2": 5,
-    "limit": 15,
-    "str1": "fizz",
-    "str2": "buzz"
+  "result": {
+    "hits": 2,
+    "most_common_request": {
+      "int1": 2,
+      "int2": 3,
+      "limit": 10,
+      "str1": "Hello",
+      "str2": "World"
+    }
   }
 }
 ```
+
+5. Personal remarks
+
+It took me 6 hours to develop this project I don't consider it finished. Here is a list of things I would have enhanced/added:
+
+-	Security: Implement HTTPS, CORS config, input validation, and rate limiting.
+-	Performance and Scalability: Add caching, enable concurrency, and ensure scalability in a containerized environment.
+- Dockerization: Ensure the app is containerized for easy deployment, scaling, and testing. You already have a Dockerfile, but validate it for production environments.
+-	Monitoring and Alerting: Set up Prometheus for metrics, add alerting, and implement distributed tracing.
+-	Error Handling and Logging: Use structured logging and centralized error handling.
+-	Documentation and Testing: Use Swagger, improve tests, and document API usage.
+-	Automated CI/CD: Automate building, testing, and deployment in a CI/CD pipeline.
+-	Health Checks and Graceful Shutdown: Add health checks and ensure the server shuts down gracefully.
+- Caching: Cache the most frequent requests (using Redis) to avoid recomputing the FizzBuzz sequence on every request.

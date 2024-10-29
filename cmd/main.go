@@ -6,10 +6,12 @@ import (
 	"os/signal"
 
 	"github.com/cendaar/fizzbuzz/api"
+	"github.com/cendaar/fizzbuzz/api/config"
 )
 
 func main() {
-	server := api.NewServer()
+	config := config.LoadConfig()
+	server := api.NewServer(&config)
 
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, os.Interrupt)
