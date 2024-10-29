@@ -36,7 +36,11 @@ func TestHandleFizzbuzz_InvalidJSON(t *testing.T) {
 	r.POST("/fizzbuzz", fizzbuzzHandler.HandleFizzbuzz)
 
 	// Invalid JSON request
-	req, _ := http.NewRequest(http.MethodPost, "/fizzbuzz", nil) // empty body
+	req, err := http.NewRequest(http.MethodPost, "/fizzbuzz", nil) // empty body
+	if err != nil {
+		t.Fatalf("Failed to create request: %v", err)
+	}
+
 	w := httptest.NewRecorder()
 
 	r.ServeHTTP(w, req)
@@ -56,7 +60,11 @@ func TestHandleFizzbuzz_ValidationError(t *testing.T) {
 
 	// Request with invalid params
 	invalidParams := `{"int1": 0, "int2": 0, "limit": -1, "str1": "", "str2": ""}`
-	req, _ := http.NewRequest(http.MethodPost, "/fizzbuzz", bytes.NewBuffer([]byte(invalidParams)))
+	req, err := http.NewRequest(http.MethodPost, "/fizzbuzz", bytes.NewBuffer([]byte(invalidParams)))
+	if err != nil {
+		t.Fatalf("Failed to create request: %v", err)
+	}
+
 	w := httptest.NewRecorder()
 
 	r.ServeHTTP(w, req)
@@ -87,7 +95,11 @@ func TestHandleFizzbuzz_ValidRequest(t *testing.T) {
 
 	// Create a valid JSON request
 	validRequest := `{"int1": 3, "int2": 5, "limit": 15, "str1": "fizz", "str2": "buzz"}`
-	req, _ := http.NewRequest(http.MethodPost, "/fizzbuzz", bytes.NewBuffer([]byte(validRequest)))
+	req, err := http.NewRequest(http.MethodPost, "/fizzbuzz", bytes.NewBuffer([]byte(validRequest)))
+	if err != nil {
+		t.Fatalf("Failed to create request: %v", err)
+	}
+
 	w := httptest.NewRecorder()
 
 	// Perform the request

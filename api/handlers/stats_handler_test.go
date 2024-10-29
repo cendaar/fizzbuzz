@@ -44,7 +44,11 @@ func TestHandleStats_Success(t *testing.T) {
 	r.GET("/stats", statsHandler.HandleStats)
 
 	// Create a test request
-	req, _ := http.NewRequest(http.MethodGet, "/stats", nil)
+	req, err := http.NewRequest(http.MethodGet, "/stats", nil)
+	if err != nil {
+		t.Fatalf("Failed to create request: %v", err)
+	}
+
 	w := httptest.NewRecorder()
 
 	// Perform the request
@@ -75,7 +79,11 @@ func TestHandleStats_NoStats(t *testing.T) {
 	r.GET("/stats", statsHandler.HandleStats)
 
 	// Create a test request
-	req, _ := http.NewRequest(http.MethodGet, "/stats", nil)
+	req, err := http.NewRequest(http.MethodGet, "/stats", nil)
+	if err != nil {
+		t.Fatalf("Failed to create request: %v", err)
+	}
+
 	w := httptest.NewRecorder()
 
 	// Perform the request
