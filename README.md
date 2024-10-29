@@ -19,19 +19,19 @@ git clone https://github.com/cendaar/fizzbuzz.git
 cd fizzbuzz
 ```
 
-2. Build the fizzbuzz server:
+### 2. Build the fizzbuzz server:
 
 ```bash
 make run
 ```
 
-2. Run unit tests:
+### 3. Run unit tests:
 
 ```bash
 make test
 ```
 
-3. Test endpoint fizzbuzz:
+### 4. Test endpoint fizzbuzz:
 
 ```bash
 $ curl -X GET "http://localhost:8080/fizzbuzz" -d '{"int1": 2, "int2": 3, "limit": 10, "str1": "Hello", "str2": "World"}' | jq
@@ -40,7 +40,7 @@ $ curl -X GET "http://localhost:8080/fizzbuzz" -d '{"int1": 2, "int2": 3, "limit
 }
 ```
 
-4. Test stats endpoint
+### 5. Test stats endpoint
 
 ```bash
 $ curl -X GET "http://localhost:8080/stats" | jq
@@ -58,7 +58,7 @@ $ curl -X GET "http://localhost:8080/stats" | jq
 }
 ```
 
-5. Personal remarks
+##  Personal remarks
 
 It took me 6 hours to develop this project I don't consider it finished. Here is a list of things I would have enhanced/added:
 
